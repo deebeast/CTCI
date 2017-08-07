@@ -6,6 +6,7 @@ class Node{
 		this.next = null;
 	}
 }
+
 class LinkedList{
   Node head;
   Node current;
@@ -33,6 +34,31 @@ class LinkedList{
     }
     System.out.println("null");
   }
+  class Result{
+    Node node;
+    boolean result;
+  }
+  boolean isPalindrome(){
+    if(this.head == null || this.head.next == null){
+        return true;
+    }
+    Result p = isPalindrome(this.head, this.head.next);
+    return p.result;
+  }
+  Result isPalindrome(Node slow, Node fast){
+      Result res = new Result();
+      if(fast != null && fast.next != null){
+        res = isPalindrome(slow.next, fast.next.next);
+        if(res.result == false || res.node == null) return res;
+        res.result = (slow.data == res.node.data);
+        res.node = res.node.next;
+      }
+      else{
+        res.node = slow.next;
+        res.result = true;
+      }
+      return res;
+  }
 
 }
 
@@ -44,7 +70,6 @@ class Test{
 		ll.add(3);
 		ll.add(2);
 		ll.add(1);
-		//current progress
-		
+    System.out.println(ll.isPalindrome());
 	}
 }
