@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 class Node{
 	int data;
 	Node next;
@@ -42,6 +44,7 @@ class LinkedList{
     if(this.head == null || this.head.next == null){
         return true;
     }
+		else if(head.next.next == null) return head.data == head.next.data;
     Result p = isPalindrome(this.head, this.head.next);
     return p.result;
   }
@@ -65,11 +68,10 @@ class LinkedList{
 class Test{
 	public static void main(String[] args){
 		LinkedList ll = new LinkedList();
-		ll.add(1);
-		ll.add(2);
-		ll.add(3);
-		ll.add(2);
-		ll.add(1);
-    System.out.println(ll.isPalindrome());
+		System.out.print("Enter number of element: ");
+		Scanner scan = new Scanner(System.in);
+		int T = scan.nextInt();
+		while(T-- > 0) ll.add(scan.nextInt());
+		System.out.println(ll.isPalindrome());
 	}
 }
